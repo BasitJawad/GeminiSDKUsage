@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Practicing Chatgpt prompts",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Basit Jawad",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.20.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.7",
+    "openai": "^4.57.0"
+  }
+}
