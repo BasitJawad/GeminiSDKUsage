@@ -16,6 +16,7 @@ const App = () => {
 
   const SendToBackend = (e) => {
     e.preventDefault();
+    setOutput("")
     setQuestion('');
     setLoading(true);
     axios
@@ -79,6 +80,26 @@ const App = () => {
     alignItems: 'center',
     gap: '50px',
   };
+  
+  const renderers = {
+    code: ({ node, inline, className, children, ...props }) => {
+      return !inline ? (
+        <pre style={{ backgroundColor: '#2d2d2d', padding: '10px', borderRadius: '5px', color: '#f8f8f2' }}>
+          <code {...props}>{children}</code>
+        </pre>
+      ) : (
+        <code {...props} style={{ backgroundColor: '#f0f0f0', padding: '2px 4px', borderRadius: '3px', color: '#333' }}>
+          {children}
+        </code>
+      );
+    },
+    blockquote: ({ node, children }) => (
+      <blockquote style={{ borderLeft: '4px solid #ff4500', paddingLeft: '10px', color: '#ccc' }}>
+        {children}
+      </blockquote>
+    ),
+  };
+
 
   return (
     <>
@@ -148,7 +169,7 @@ const App = () => {
               ) : (
           
                 <p className='Para'> {/* Attach the ref to the paragraph element */}
-                <ReactMarkdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
+                <ReactMarkdown components={renderers} remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
                   { Output}
                 </ReactMarkdown>
                 </p>
